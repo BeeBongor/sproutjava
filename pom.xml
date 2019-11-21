@@ -20,6 +20,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.1-jre</version>
+        </dependency>
+        <dependency>
             <groupId>com.mysql.jdbc</groupId>
             <artifactId>com.springsource.com.mysql.jdbc</artifactId>
             <version>5.1.6</version>
@@ -82,6 +87,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
