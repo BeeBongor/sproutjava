@@ -11,3 +11,4 @@ dump.rdb
 *.ipr
 
 # maven
+/.idea/
