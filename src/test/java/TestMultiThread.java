@@ -2,16 +2,50 @@ import multithread.Consumer;
 import multithread.MyStack;
 import multithread.Producer;
 
-public class TestMultiThread {
+import java.util.Arrays;
+
+public class TestMultiThread extends Thread{
+
+
+    ThreadLocal<String> threadLocal = ThreadLocal.withInitial(()->"before");
+
+    ThreadLocal<Integer> threadLocal2 = ThreadLocal.withInitial(()->1);
     public static void main(String[] args) {
         MyStack myStack = new MyStack();
+//        Thread
+
+//        new Producer(myStack, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1").start();
+//        new Producer(myStack, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2").start();
+//        new Consumer(myStack, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1" ).start();
+//        new Consumer(myStack, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2" ).start();
+//        new Consumer(myStack, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3" ).start();
+        TestMultiThread testMultiThread = new TestMultiThread();
+
+        Thread thread = new Thread(testMultiThread);
+        Thread thread2 = new Thread(testMultiThread);
+        Thread thread3 = new Thread(testMultiThread);
 
 
-        new Producer(myStack, "Éú²úÕß1").start();
-        new Producer(myStack, "Éú²úÕß2").start();
-        new Consumer(myStack, "Ïû·ÑÕß1" ).start();
-        new Consumer(myStack, "Ïû·ÑÕß2" ).start();
-        new Consumer(myStack, "Ïû·ÑÕß3" ).start();
+
+        thread.start();
+
+        thread2.start();
+        thread3.start();
+//        thread.start();
 
     }
+
+
+    @Override
+    public void run(){
+
+
+        System.out.println(Thread.currentThread()+threadLocal.get());
+        System.out.println(Thread.currentThread()+""+threadLocal2.get());
+        threadLocal.set("after");
+        threadLocal2.set(2);
+        System.out.println(Thread.currentThread()+threadLocal.get());
+        System.out.println(Thread.currentThread()+""+threadLocal2.get());
+    }
+
 }

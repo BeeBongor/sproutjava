@@ -6,25 +6,25 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * втй╣ожоъЁлЁь
+ * О©╫О©╫й╣О©╫О©╫О©╫ъЁлЁО©╫
  */
 public class ThreadPool {
 
-    // оъЁлЁь╢Сп║
+    // О©╫ъЁлЁь╢О©╫п║
     int threadPoolSize;
 
-    // хннЯхщфВ
+    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
     LinkedList<Runnable> tasks = new LinkedList<Runnable>();
 
-    // йтм╪оШ╥яхннЯ╣доъЁл
+    // О©╫О©╫м╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ъЁО©╫
 
     public ThreadPool() {
         threadPoolSize = 10;
 
-        // фТ╤╞10╦ЖхннЯоШ╥яуъоъЁл
+        // О©╫О©╫О©╫О©╫10О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ъЁО©╫
         synchronized (tasks) {
             for (int i = 0; i < threadPoolSize; i++) {
-                new TaskConsumeThread("хннЯоШ╥яуъоъЁл " + i).start();
+                new TaskConsumeThread("О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ъЁО©╫ " + i).start();
             }
         }
     }
@@ -32,9 +32,9 @@ public class ThreadPool {
     public void add(Runnable r) {
         synchronized (tasks) {
             tasks.add(r);
-            // ╩╫пя╣х╢Щ╣дхннЯоШ╥яуъоъЁл
             tasks.notifyAll();
         }
+
     }
 
     class TaskConsumeThread extends Thread {
@@ -46,7 +46,7 @@ public class ThreadPool {
 
         @Override
         public void run() {
-            System.out.println("фТ╤╞ё╨ " + this.getName());
+            System.out.println("О©╫О©╫О©╫О©╫О©╫О©╫ " + this.getName());
             while (true) {
                 synchronized (tasks) {
                     while (tasks.isEmpty()) {
@@ -58,11 +58,11 @@ public class ThreadPool {
                         }
                     }
                     task = tasks.removeLast();
-                    // тйпМлМ╪схннЯ╣доъЁл©ирт╪лпЬлМ╪схннЯ
+                    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ъЁл©О©╫О©╫т╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
                     tasks.notifyAll();
 
                 }
-                System.out.println(this.getName() + " ╩Ях║╣╫хннЯё╛╡╒ж╢пп");
+                System.out.println(this.getName() + " О©╫О©╫х║О©╫О©╫О©╫О©╫О©╫Яё╛╡О©╫ж╢О©╫О©╫");
                 task.run();
             }
         }
