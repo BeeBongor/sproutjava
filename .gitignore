@@ -5,7 +5,7 @@ generated/
 dump.rdb
 
 # IntelliJ
-.idea/
+.idea
 *.iws
 *.iml
 *.ipr
